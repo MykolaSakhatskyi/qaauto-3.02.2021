@@ -1,4 +1,4 @@
-package homework;
+package homeworkTwo;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -27,6 +27,7 @@ public class HomeWorkTree {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com");
     }
 
@@ -70,17 +71,17 @@ public class HomeWorkTree {
         logout.click();
     }
 
-    /*@AfterMethod
+    @AfterMethod
     public void endTest() {
         driver.quit();
-    } */
+    }
 
     private void chooseTruelogin(String errorMessage) {
-            if (errorMessage.contains("Epic sadface: Username is required"))
+            if (errorMessage.equals("Epic sadface: Username is required"))
                 usernameField.sendKeys(log[2]);
-            else if (errorMessage.contains("Epic sadface: Password is required"))
+            else if (errorMessage.equals("Epic sadface: Password is required"))
                 passwordField.sendKeys(pass[1]);
-            else if (errorMessage.contains("Epic sadface: Sorry, this user has been locked out.")) {
+            else if (errorMessage.equals("Epic sadface: Sorry, this user has been locked out.")) {
                 usernameField.clear();
                 usernameField.sendKeys(log[1]);
             }

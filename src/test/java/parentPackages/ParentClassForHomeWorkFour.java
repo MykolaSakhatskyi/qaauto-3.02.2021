@@ -1,4 +1,4 @@
-package homeworkFour;
+package parentPackages;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -6,9 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-public class ParentClass {
+public class ParentClassForHomeWorkFour {
 
-    WebDriver driver;
+    public WebDriver driver;
 
     @BeforeMethod
     public void start() {
