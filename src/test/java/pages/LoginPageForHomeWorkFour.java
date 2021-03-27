@@ -1,19 +1,21 @@
-package homeworkFour;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends ParentClass {
+public class LoginPageForHomeWorkFour {
 
-    private WebElement usernameField;
-    private WebElement passwordField;
-    private WebElement loginButton;
-    private String log;
+    WebDriver driver;
+    WebElement usernameField;
+    WebElement passwordField;
+    WebElement loginButton;
+    private String logCorrect;
+    private String logIncorrect;
     private String pass;
-    private String mistake;
+    String mistake;
 
-    public LoginPage(WebDriver driver) {
+    public LoginPageForHomeWorkFour(WebDriver driver) {
         this.driver = driver;
         usernameField = driver.findElement(By.id("user-name"));
         passwordField = driver.findElement(By.id("password"));
@@ -28,26 +30,34 @@ public class LoginPage extends ParentClass {
         WebElement errorMassage = driver.findElement(By.xpath("//h3"));
         mistake = errorMassage.getText();
         chooseTruelogin(mistake);
+
+        mistake = errorMassage.getText();
+        chooseTruelogin(mistake);
     }
 
     private void chooseTruelogin(String mistake) {
-        if (mistake.contains("Epic sadface: Username and password do not match any user in this service")) {
+        if (mistake.equals("Epic sadface: Username and password do not match any user in this service")) {
             valuesToEnter();
             usernameField.clear();
-            usernameField.sendKeys(log);
+            usernameField.sendKeys(logIncorrect);
             passwordField.clear();
-            passwordField.sendKeys(pass);
-        }
+            passwordField.sendKeys(pass);}
+        else if (mistake.equals("Epic sadface: Sorry, this user has been locked out.")) {
+            valuesToEnter();
+            usernameField.clear();
+            usernameField.sendKeys(logCorrect);}
         loginButton.click();
     }
 
     public void valuesToEnter() {
         String loginClass = "login_credentials";
         String passwordClass = "login_password";
-        int indexLoginPassword = 1;
+        int indexCorrectLoginPassword = 1;
+        int indexIncorrectLogin = 2;
 
-        log = getLoginPassword(loginClass, indexLoginPassword);
-        pass = getLoginPassword(passwordClass, indexLoginPassword);
+        logCorrect = getLoginPassword(loginClass, indexCorrectLoginPassword);
+        logIncorrect = getLoginPassword(loginClass, indexIncorrectLogin);
+        pass = getLoginPassword(passwordClass, indexCorrectLoginPassword);
     }
 
     private String getLoginPassword(String className, int index) {
