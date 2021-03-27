@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPageForHomeWorkFour {
+public class LoginPage {
 
     WebDriver driver;
     WebElement usernameField;
@@ -15,7 +15,7 @@ public class LoginPageForHomeWorkFour {
     private String pass;
     String mistake;
 
-    public LoginPageForHomeWorkFour(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         this.driver = driver;
         usernameField = driver.findElement(By.id("user-name"));
         passwordField = driver.findElement(By.id("password"));
@@ -31,6 +31,16 @@ public class LoginPageForHomeWorkFour {
         mistake = errorMassage.getText();
         chooseTruelogin(mistake);
 
+        mistake = errorMassage.getText();
+        chooseTruelogin(mistake);
+    }
+
+    public void loginFalse() {
+        usernameField.sendKeys("Типа логин");
+        passwordField.sendKeys("Типа пароль");
+        loginButton.click();
+
+        WebElement errorMassage = driver.findElement(By.xpath("//h3"));
         mistake = errorMassage.getText();
         chooseTruelogin(mistake);
     }
@@ -66,4 +76,5 @@ public class LoginPageForHomeWorkFour {
 
         return  valuesLoginPassword[index];
     }
+
 }
