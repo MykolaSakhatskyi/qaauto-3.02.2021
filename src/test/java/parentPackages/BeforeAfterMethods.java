@@ -1,9 +1,7 @@
 package parentPackages;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -26,13 +24,5 @@ public abstract class BeforeAfterMethods {
     public void endTest() {
         softAssert.assertAll();
         driver.quit();
-    }
-
-    protected String getErrorTextOrEmpty (WebElement element) {
-        try {
-            return element.getText();
-        } catch (NoSuchElementException ignore) {
-            return "";
-        }
     }
 }
