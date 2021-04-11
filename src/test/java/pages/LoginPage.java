@@ -3,59 +3,74 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import parentPackages.ParentClass;
 
-public class LoginPage {
+public class LoginPage extends ParentClass {
 
-    WebDriver driver;
-    WebElement usernameField;
-    WebElement passwordField;
-    WebElement loginButton;
+
+    @FindBy(id = "user-name")
+    private WebElement usernameField;
+
+    @FindBy(id = "password")
+    private WebElement passwordField;
+
+    @FindBy(id = "login-button")
+    private WebElement loginButton;
+
+    @FindBy(xpath = "//h3")
+    public WebElement errorMassage;
+
     private String logCorrect;
     private String logIncorrect;
     private String pass;
-    String mistake;
+    private String mistake;
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        usernameField = driver.findElement(By.id("user-name"));
-        passwordField = driver.findElement(By.id("password"));
-        loginButton = driver.findElement(By.id("login-button"));
+        super(driver);
     }
 
-    public void login() {
-        usernameField.sendKeys("Типа логин");
-        passwordField.sendKeys("Типа пароль");
+    public void loginPositive() {
+        valuesToEnter();
+        usernameField.sendKeys(logCorrect);
+        passwordField.sendKeys(pass);
         loginButton.click();
-
-        WebElement errorMassage = driver.findElement(By.xpath("//h3"));
-        mistake = errorMassage.getText();
-        chooseTruelogin(mistake);
-
-        mistake = errorMassage.getText();
-        chooseTruelogin(mistake);
     }
 
-    public void loginFalse() {
-        usernameField.sendKeys("Типа логин");
-        passwordField.sendKeys("Типа пароль");
+    public void loginWithoutEmailAndPassword() {
+        usernameField.sendKeys("");
+        passwordField.sendKeys("");
         loginButton.click();
-
-        WebElement errorMassage = driver.findElement(By.xpath("//h3"));
-        mistake = errorMassage.getText();
-        chooseTruelogin(mistake);
     }
 
-    private void chooseTruelogin(String mistake) {
-        if (mistake.equals("Epic sadface: Username and password do not match any user in this service")) {
-            valuesToEnter();
-            usernameField.clear();
-            usernameField.sendKeys(logIncorrect);
-            passwordField.clear();
-            passwordField.sendKeys(pass);}
-        else if (mistake.equals("Epic sadface: Sorry, this user has been locked out.")) {
-            valuesToEnter();
-            usernameField.clear();
-            usernameField.sendKeys(logCorrect);}
+    public void logonWithoutEmail() {
+        valuesToEnter();
+        usernameField.sendKeys("");
+        passwordField.sendKeys("");
+        usernameField.clear();
+        passwordField.clear();
+        passwordField.sendKeys("");
+        loginButton.click();
+    }
+
+    public void logonWithoutPassword() {
+        valuesToEnter();
+        usernameField.sendKeys("");
+        passwordField.sendKeys("");
+        passwordField.clear();
+        usernameField.clear();
+        usernameField.sendKeys(logCorrect);
+        loginButton.click();
+    }
+
+    public void logonWithIncorrectValues() {
+        valuesToEnter();
+        usernameField.sendKeys("");
+        passwordField.sendKeys("");
+        passwordField.clear();
+        usernameField.clear();
+        usernameField.sendKeys(logIncorrect);
+        passwordField.sendKeys("uiiii");
         loginButton.click();
     }
 

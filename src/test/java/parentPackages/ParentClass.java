@@ -1,25 +1,16 @@
 package parentPackages;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.support.PageFactory;
 
-public class ParentClass {
 
-    public WebDriver driver;
+public abstract class ParentClass {
 
-    @BeforeMethod
-    public void start() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get("https://www.saucedemo.com");
-    }
+    protected WebDriver driver;
 
-    @AfterMethod
-    public void endTest() {
-        driver.quit();
+    protected ParentClass(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver,this);
     }
 
 }
