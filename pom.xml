@@ -8,6 +8,21 @@
     <artifactId>autotests</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <profiles>
+        <profile>
+            <id>fullSuite</id>
+            <activation>
+                <property>
+                    <name>Full Suite</name>
+                </property>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                    <suite>full</suite>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
@@ -25,7 +40,7 @@
                 <version>3.0.0-M5</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <file>src/test/resources/suites/loginNegativeTests.xml</file>
+                        <file>src/test/resources/suites/${suite}.xml</file>  <!--дефолтный сьют-->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -49,7 +64,11 @@
             <version>7.4.0</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
     </dependencies>
 
 </project>
