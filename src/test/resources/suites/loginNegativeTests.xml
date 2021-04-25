@@ -4,6 +4,4 @@
             <class name = "homework.LoginNegativeTest"/>
         </classes>
     </test>
-
-
 </suite>

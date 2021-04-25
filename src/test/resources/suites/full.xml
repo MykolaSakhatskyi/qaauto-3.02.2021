@@ -1,0 +1,7 @@
+<suite name = "Suite" parallel="methods" thread-count="5">
+    <test name = "Full">
+        <packages>
+            <package name = "homework"/>
+        </packages>
+    </test>
+</suite>

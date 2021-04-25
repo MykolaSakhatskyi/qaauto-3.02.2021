@@ -1,0 +1,7 @@
+<suite name = "Suite">
+    <test name = "loginPositive">
+        <classes>
+            <class name = "homework.LoginPositiveTest"/>
+        </classes>
+    </test>
+</suite>
