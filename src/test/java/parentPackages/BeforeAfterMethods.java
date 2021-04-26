@@ -1,4 +1,4 @@
-package parentPackages;
+/*package parentPackages;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.PropertyConfigurator;
@@ -19,7 +19,6 @@ public abstract class BeforeAfterMethods {
     @BeforeMethod
     public void start() {
         PropertyConfigurator.configure("src/test/resources/properties/log4j.properties");
-
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         setDriverForScreenshotParentClass();
@@ -36,4 +35,4 @@ public abstract class BeforeAfterMethods {
     private void setDriverForScreenshotParentClass() {
         treadLocalWebDriver.set(driver);
     }
-}
+}*/

@@ -5,11 +5,12 @@ import io.qameta.allure.Story;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import parentPackages.BeforeAfterMethods;
+import parentPackages.BaseTest;
+
 
 @Feature("Test")
 @Story("Negative")
-public class LoginNegativeTest extends BeforeAfterMethods {
+public class LoginNegativeTest extends BaseTest {
 
     @DataProvider(name = "valuesToEnter")
     private Object[][] valuesToEnter() {
