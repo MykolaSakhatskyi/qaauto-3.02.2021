@@ -1,22 +1,21 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import parentPackages.ParentClass;
 
-import java.util.concurrent.TimeUnit;
+import static com.codeborne.selenide.Selenide.$;
 
 public class InventoryPage extends ParentClass {
 
-    @FindBy(id = "react-burger-menu-btn")
-    private WebElement menuButton;
+    private final SelenideElement menuButton = $(By.id("react-burger-menu-btn"));
 
-    @FindBy(id = "logout_sidebar_link")
-    private WebElement logoutButton;
+    private final SelenideElement logoutButton = $(By.id("logout_sidebar_link"));
 
-    @FindBy(className = "title")
-    private WebElement confirmingClass;
+    private final SelenideElement confirmingClass = $(By.className("title"));
 
     public InventoryPage(WebDriver driver) {
         super(driver);
@@ -24,11 +23,12 @@ public class InventoryPage extends ParentClass {
 
     public void logout() {
         menuButton.click();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        Configuration.timeout = 10000; // не ждет это время
+        logoutButton.should(Condition.enabled);
         logoutButton.click();
     }
 
-    public WebElement getConfirmingClass() {
+    public SelenideElement getConfirmingClass() {
         return confirmingClass;
     }
 
